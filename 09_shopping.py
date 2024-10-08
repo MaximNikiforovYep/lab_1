@@ -27,12 +27,34 @@ shops = {
         ],
 }
 
-# Создайте словарь цен на продкты следующего вида (писать прямо в коде)
-sweets = {
-    'название сладости': [
-        {'shop': 'название магазина', 'price': 99.99},
-        # TODO тут с клавиатуры введите магазины и цены (можно копипастить ;)
-    ],
-    # TODO тут с клавиатуры введите другую сладость и далее словарь магазинов
-}
-# Указать надо только по 2 магазина с минимальными ценами
+sweets = {}
+
+# Итерируем по каждому магазину
+for shop, products in shops.items():
+    # Итерируем по каждому продукту в магазине
+    for product in products:
+        name = product['name']  # Название товара
+        price = product['price']  # Цена товара
+
+        # Если товар еще не добавлен в sweets, инициализируем его
+        if name not in sweets:
+            sweets[name] = []
+
+        # Добавляем информацию о магазине и цене в список товара
+        sweets[name].append({shop: {'название магазина': shop, 'price': price}})
+
+# Приводим к нужному формату
+final_sweets = {}
+for sweet, shop_list in sweets.items():
+    final_sweets[sweet] = []
+    for shop in shop_list:
+        shop_name = list(shop.keys())[0]
+        price = shop[shop_name]['price']
+        final_sweets[sweet].append({shop_name: 'название магазина', 'price': price})
+
+min_price_sweets = {}
+for sweet, shops_list in final_sweets.items():
+    sorted_shops = sorted(shops_list, key=lambda x: x['price'])
+    min_price_sweets[sweet] = sorted_shops[:2]
+
+print(min_price_sweets)

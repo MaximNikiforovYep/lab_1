@@ -53,3 +53,17 @@ print('Лампа -', lamps_quantity, 'шт, стоимость', lamps_cost, '�
 # Это задание на ручное вычисление - что бы потом понять как работают циклы и насколько с ними проще жить.
 
 # TODO здесь ваш код
+for item, code in goods.items():
+    total_quantity = 0
+    total_cost = 0
+
+    # Проверяем есть ли товар в складе
+    if code in store:
+        for stock in store[code]:
+            quantity = stock['quantity']
+            price = stock['price']
+            total_quantity += quantity
+            total_cost += quantity * price
+
+    # Выводим результат для каждого товара
+    print(f"{item} - {total_quantity} шт, стоимость {total_cost} руб")
