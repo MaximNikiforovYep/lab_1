@@ -29,21 +29,16 @@ shops = {
 
 sweets = {}
 
-# Итерируем по каждому магазину
 for shop, products in shops.items():
-    # Итерируем по каждому продукту в магазине
     for product in products:
-        name = product['name']  # Название товара
-        price = product['price']  # Цена товара
+        name = product['name']
+        price = product['price']
 
-        # Если товар еще не добавлен в sweets, инициализируем его
         if name not in sweets:
             sweets[name] = []
 
-        # Добавляем информацию о магазине и цене в список товара
         sweets[name].append({shop: {'название магазина': shop, 'price': price}})
 
-# Приводим к нужному формату
 final_sweets = {}
 for sweet, shop_list in sweets.items():
     final_sweets[sweet] = []

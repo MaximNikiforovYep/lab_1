@@ -57,7 +57,6 @@ for item, code in goods.items():
     total_quantity = 0
     total_cost = 0
 
-    # Проверяем есть ли товар в складе
     if code in store:
         for stock in store[code]:
             quantity = stock['quantity']
@@ -65,5 +64,4 @@ for item, code in goods.items():
             total_quantity += quantity
             total_cost += quantity * price
 
-    # Выводим результат для каждого товара
     print(f"{item} - {total_quantity} шт, стоимость {total_cost} руб")
