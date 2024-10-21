@@ -14,7 +14,6 @@ sites = {
 
 distances = {}
 
-# TODO здесь заполнение словаря
 def find_distance(sites):
     for city1, (x1, y1) in sites.items():
         distances[city1] = {}
