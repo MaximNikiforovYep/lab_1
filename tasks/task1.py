@@ -4,18 +4,23 @@
 # Есть значение радиуса круга
 radius = 42
 
+
 # Выведите на консоль значение прощади этого круга с точностю до 4-х знаков после запятой
 # подсказки:
 #       формулу можно подсмотреть в интернете,
 #       пи возьмите равным 3.1415926
 #       точность указывается в функции round()
 # TODO здесь ваш код
-pi = 3.1415926
-area = pi * radius ** 2
-print(round(area, 4))
+def circle_area(radius_par):
+    pi = 3.1415926
+    area = pi * radius_par ** 2
+    return round(area, 4)
+
 
 # Далее, пусть есть координаты точки
 point_1 = (23, 34)
+
+
 # где 23 - координата х, 34 - координата у
 
 # Если точка point лежит внутри того самого круга [центр в начале координат (0, 0), radius = 42],
@@ -26,24 +31,23 @@ point_1 = (23, 34)
 #       квадратный корень - это возведение в степень 0.5
 #       операции сравнения дают булевы константы True и False
 # TODO здесь ваш код
-def is_point_inside_circle(point, radius):
-    x, y = point
+def is_point_inside_circle(point_par, radius_par):
+    x, y = point_par
     distance_to_center = (x ** 2 + y ** 2) ** 0.5
-    return distance_to_center <= radius
+    return distance_to_center <= radius_par
 
-print(is_point_inside_circle(point_1, radius))
+
+#print(is_point_inside_circle(point_1, radius))
 
 # Аналогично для другой точки
 point_2 = (30, 30)
 # Если точка point_2 лежит внутри круга (radius = 42), то выведите на консоль True,
 # Или False, если точка лежит вовне круга.
 # TODO здесь ваш код
-print(is_point_inside_circle(point_2, radius))
+#print(is_point_inside_circle(point_2, radius))
 
 # Пример вывода на консоль:
 #
 # 77777.7777
 # False
 # False
-
-

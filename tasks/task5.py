@@ -1,34 +1,23 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# есть список животных в зоопарке
+class Zoo:
+    def __init__(self, zoo):
+        self.zoo = zoo
 
-zoo = ['lion', 'kangaroo', 'elephant', 'monkey', ]
+    def insert(self, poss, animal):
+        self.zoo.insert(poss, animal)
 
-# посадите медведя (bear) между львом и кенгуру
-#  и выведите список на консоль
-# TODO здесь ваш код
-zoo.insert(1, 'bear')
-print(zoo)
+    def extend(self, sub_zoo):
+        self.zoo.extend(sub_zoo)
 
-# добавьте птиц из списка birds в последние клетки зоопарка
-birds = ['rooster', 'ostrich', 'lark', ]
-#  и выведите список на консоль
-# TODO здесь ваш код
-zoo.extend(birds)
-print(zoo)
+    def remove(self, animal):
+        self.zoo.remove(animal)
 
-# уберите слона
-#  и выведите список на консоль
-# TODO здесь ваш код
-zoo.remove('elephant')
-print(zoo)
+    def find_pos(self, animal):
+        return self.zoo.index(animal) + 1
 
-# выведите на консоль в какой клетке сидит лев (lion) и жаворонок (lark).
-# Номера при выводе должны быть понятны простому человеку, не программисту.
-# TODO здесь ваш код
-lion_index = zoo.index('lion') + 1
-lark_index = zoo.index('lark') + 1
+    def print(self):
+        print(self.zoo)
 
-print(f'Лев сидит в клетке номер {lion_index}')
-print(f'Жаворонок сидит в клетке номер {lark_index}')
+

@@ -18,57 +18,41 @@ target = 25
 operators = ['+', '-', '*']
 
 
-def calculate_expression(numbers, ops):
-    if ops[0] == '+':
-        result = numbers[0] + numbers[1]
-    elif ops[0] == '-':
-        result = numbers[0] - numbers[1]
-    elif ops[0] == '*':
-        result = numbers[0] * numbers[1]
 
-    if ops[1] == '+':
-        result += numbers[2]
-    elif ops[1] == '-':
-        result -= numbers[2]
-    elif ops[1] == '*':
-        result *= numbers[2]
-
-    if ops[2] == '+':
-        result += numbers[3]
-    elif ops[2] == '-':
-        result -= numbers[3]
-    elif ops[2] == '*':
-        result *= numbers[3]
-
-    if ops[3] == '+':
-        result += numbers[4]
-    elif ops[3] == '-':
-        result -= numbers[4]
-    elif ops[3] == '*':
-        result *= numbers[4]
-
-    expression = f"{numbers[0]} {ops[0]} {numbers[1]} {ops[1]} {numbers[2]} {ops[2]} {numbers[3]} {ops[3]} {numbers[4]}"
-
-    return result, expression
+def generate_expressions(numbers, ops):
+    if len(numbers) == 1:
+        yield str(numbers[0])
+    else:
+        for i in range(1, len(numbers)):
+            left_numbers = numbers[:i]
+            right_numbers = numbers[i:]
+            for left_expr in generate_expressions(left_numbers, ops):
+                for right_expr in generate_expressions(right_numbers, ops):
+                    for op in ops:
+                        yield f"({left_expr} {op} {right_expr})"
 
 
-found = False
-for op1 in operators:
-    for op2 in operators:
-        for op3 in operators:
-            for op4 in operators:
-                ops = [op1, op2, op3, op4]
-                result, expression = calculate_expression(numbers, ops)
-                if result == target:
-                    print(f"{expression} = {target}")
-                    found = True
-                    break
-            if found:
-                break
-        if found:
-            break
-    if found:
-        break
+def find_expression(numbers, target):
+    operators = ['+', '-', '*']
 
-if not found:
-    print("Решение не найдено.")
+    for expr in generate_expressions(numbers, operators):
+        try:
+            if eval(expr) == target:
+                return expr
+        except Exception:
+            continue
+    return None
+
+
+def exp_find_main(numbers, target):
+    # Получаем числа и цель от пользователя
+
+
+    # Ищем выражение, которое дает целевой результат
+    result = find_expression(numbers, target)
+
+    if result:
+        print(f"Результат: {result} = {target}")
+    else:
+        print("Невозможно получить заданное число с помощью указанных операций.")
+
